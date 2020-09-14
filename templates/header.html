@@ -1,0 +1,40 @@
+{% set pages = ['home', 'blog', 'projects', 'about'] %}
+<style>
+    .active-page {
+        border-bottom: 3px solid;
+    }
+
+    #page-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75em;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #page-header {
+            flex-direction: column;
+            font-size: 2.5vw;
+        }
+
+        #page-name {
+            text-align: center;
+        }
+
+        #page-links {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 2.5em;
+        }
+    }
+</style>
+<header id="page-header">
+    <h3 id="page-name">{% include 'name.html' %}</h3>
+    <h3 id="page-links">
+        {% for page in pages %}
+            <a
+              href="{{ url_for(page) }}"
+              class="{{ 'active-page' if active_page == page else '' }}"
+            >{{ page.title() }}</a>
+        {% endfor %}
+    </h3>
+</header>

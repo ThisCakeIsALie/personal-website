@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    #blog-titles {
+        margin-top: 5em;
+        font-size: 0.75em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .blog-entry {
+        margin-bottom: 2.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .blog-entry img {
+        width: 60%;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #blog-titles {
+            font-size: 1.75em;
+            grid-template-columns: 1fr;
+            margin-top: 0;
+        }
+
+        .blog-entry {
+            margin-top: 2.5em;
+            margin-bottom: 2.5em;
+        }
+
+        .divider {
+            display: inline;
+            text-align: center;
+            font-size: 1.75em;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    {% set active_page = 'blog' %}
+    {% include 'header.html' %}
+    <div id="blog-titles">
+        {% for article in articles %}
+            <a class="blog-entry" href="{{ url_for('article', name=article.path) }}">
+                <img src="{{ url_for('image', name=article.title_image, preprocessor='bloomify') }}">
+                <div class="blog-name">
+                    <p>{{ article.title | safe }}</p>
+                    <sub>{{ article.created }}</sub>
+                </div>
+            </a>
+            {% if not loop.last %}
+                <p class="divider">&#9632; &#9632; &#9632;</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

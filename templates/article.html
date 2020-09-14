@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        #title {
+            margin-top: 2.5em;
+            margin-bottom: 2em;
+        }
+
+        #title h4 {
+            margin: 0;
+        }
+
+        #content-info {
+            font-size: 0.6em;
+        }
+
+        @media screen and (max-width: 1024px) {
+            #content-info {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% include 'header.html' %}
+    <header id="title">
+        <h4>{{ article.title | safe }}</h4>
+        <span id="content-info">Written by TheCakeIsALie on {{ article.created }}</span>
+    </header>
+    <div class="normal-text">
+        {{ article.html | safe }}
+    </div>
+{% endblock %}

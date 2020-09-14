@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    #blog-titles {
+        margin-top: 5em;
+        font-size: 0.75em;
+    }
+
+    .blog-entry {
+        margin-bottom: 2.5em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #blog-titles {
+            font-size: 1.5em;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    {% set active_page = 'blog' %}
+    {% include 'header.html' %}
+    <div id="blog-titles">
+        {% for article in articles %}
+            <a class="blog-entry" href="{{ url_for('article', name=article.path) }}">
+                <span>{{ article.title | safe }}</span>
+                <span>{{ article.created }}</span>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
