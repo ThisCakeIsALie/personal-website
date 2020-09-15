@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        #list {
+            margin-top: 5em;
+            font-size: 0.75em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+        .divider {
+            display: none;
+        }
+
+        @media screen and (max-width: 1024px) {
+            #list {
+                font-size: 1.75em;
+                grid-template-columns: 1fr;
+                margin-top: 0;
+            }
+
+            .divider {
+                display: inline;
+                text-align: center;
+                font-size: 1.75em;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% include 'header.html' %}
+    <div id="list">
+        {% for a in items %}
+            {% set item = a %}
+            {% block item scoped %}{% endblock %}
+            {% if not loop.last %}
+                <p class="divider">&#9632; &#9632; &#9632;</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

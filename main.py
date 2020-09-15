@@ -23,15 +23,15 @@ def home():
 
 @app.route('/projects/')
 def projects():
-    return 'projects'
+    return render_template('projects.html', items=pages)
 
 @app.route('/about/')
 def about():
-    return render_template('about.html', articles=pages)
+    return render_template('about.html')
 
 @app.route('/blog/')
 def blog():
-    return render_template('blog.html', articles=pages)
+    return render_template('blog.html', items=pages)
 
 @app.route('/blog/<string:name>/')
 def article(name):

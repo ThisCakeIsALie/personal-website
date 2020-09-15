@@ -1,0 +1,32 @@
+{% set active_page = 'projects' %}
+{% extends 'list.html' %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+        .list-entry {
+            text-align: center;
+            margin-bottom: 2.5em;
+        }
+
+        .list-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block item %}
+    <a class="list-entry" href="">
+        <div>
+            <p>Placeholder</p>
+            <div class="list-actions">
+                <span>Demo</span>
+                <span>Blog</span>
+                <span>Source</span>
+            </div>
+        </div>
+    </a>
+{% endblock %}

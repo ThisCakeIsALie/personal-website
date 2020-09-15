@@ -40,8 +40,8 @@
         <h5>I write stuff for computers and humans.</h5>
     </div>
     <div id="navigation">
-        <button><a href="{{url_for('blog')}}">Blog</a></button>
-        <button>Projects</button>
+        <button><a href="{{ url_for('blog') }}">Blog</a></button>
+        <button><a href="{{ url_for('projects') }}">Projects</a></button>
         <button><a href="{{ url_for('about') }}">About</a></button>
     </div>
 {% endblock %}
