@@ -9,24 +9,36 @@
             margin-bottom: 2.5em;
         }
 
+        .list-entry img {
+            width: 60%;
+        }
+
         .list-actions {
             display: flex;
             align-items: center;
             justify-content: space-evenly;
             text-decoration: underline;
         }
+
+        .sub-description {
+            display: block;
+        }
     </style>
 {% endblock %}
 
 {% block item %}
     <a class="list-entry" href="">
+        <img src="{{ url_for('image', name=item.title_image, preprocessor='bloomify') }}">
         <div>
-            <p>Placeholder</p>
-            <div class="list-actions">
+            <p>
+                Placeholder
+                <sub class="sub-description">A technology project</sub>
+            </p>
+            <sub class="list-actions">
                 <span>Demo</span>
                 <span>Blog</span>
                 <span>Source</span>
-            </div>
+            </sub>
         </div>
     </a>
 {% endblock %}
