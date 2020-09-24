@@ -27,18 +27,20 @@
 {% endblock %}
 
 {% block item %}
-    <a class="list-entry" href="">
-        <img src="{{ url_for('image', name=item.title_image, preprocessor='bloomify') }}">
+    <div class="list-entry">
+        <img src="{{ url_for('image', name=item.image, preprocessor='bloomify') }}">
         <div>
             <p>
-                Placeholder
-                <sub class="sub-description">A technology project</sub>
+                {{ item.name }}
+                <sub class="sub-description">{{ item.description }}</sub>
             </p>
             <sub class="list-actions">
-                <span>Demo</span>
-                <span>Blog</span>
-                <span>Source</span>
+                {% for link_target in ["demo", "blog", "source"] %}
+                    {% if item[link_target] is not none %}
+                        <a href="{{ item[link_target] }}">{{ link_target.title() }}</a>
+                    {% endif %}
+                {% endfor %}
             </sub>
         </div>
-    </a>
+    </div>
 {% endblock %}

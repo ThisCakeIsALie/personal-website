@@ -2,19 +2,26 @@ import os
 import sys
 import image_processing
 from io import BytesIO
+from projects import ProjectLoader
 from flask import Flask, render_template, send_file, abort
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 from PIL import Image
+
 
 DEBUG = True
 
 app = Flask(__name__)
 
 app.config['FLATPAGES_AUTO_RELOAD'] = DEBUG
+app.config['FLATPAGES_ROOT'] = 'blog'
 app.config['FLATPAGES_EXTENSION'] = '.md'
 
+app.config['PROJECTLOADER_ROOT'] = 'projects.json'
+
+
 pages = FlatPages(app)
+project_list = ProjectLoader(app)
 freezer = Freezer(app)
 
 @app.route('/')
@@ -23,7 +30,7 @@ def home():
 
 @app.route('/projects/')
 def projects():
-    return render_template('projects.html', items=pages)
+    return render_template('projects.html', items=project_list)
 
 @app.route('/about/')
 def about():
