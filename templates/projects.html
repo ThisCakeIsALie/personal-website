@@ -5,18 +5,15 @@
     {{ super() }}
     <style>
         .list-entry {
+            display: grid;
+            grid-template-rows: 4fr 1fr;
             text-align: center;
+            place-items: center;
             margin-bottom: 2.5em;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
         }
 
         .list-entry img {
             width: 60%;
-            margin-top: auto;
-            margin-bottom: auto;
         }
 
         .list-actions {
