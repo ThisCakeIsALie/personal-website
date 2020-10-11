@@ -7,10 +7,16 @@
         .list-entry {
             text-align: center;
             margin-bottom: 2.5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
         }
 
         .list-entry img {
             width: 60%;
+            margin-top: auto;
+            margin-bottom: auto;
         }
 
         .list-actions {
@@ -22,6 +28,13 @@
 
         .sub-description {
             display: block;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .list-entry {
+                margin-top: 2.5em;
+                margin-bottom: 2.5em;
+            }
         }
     </style>
 {% endblock %}
