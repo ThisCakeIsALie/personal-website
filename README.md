@@ -1,2 +1,1 @@
-Welcome to my personal website. It's still WIP so not hosted yet...
-If you, for some reason, want to see it in action, you can by just running `main.py`.
+Welcome to my personal website. If you, for some reason, want to run it on your own pc just run `python main.py` or `python main.py build` to build the finalized static site.
