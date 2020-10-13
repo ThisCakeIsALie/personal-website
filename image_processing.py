@@ -1,4 +1,5 @@
 from PIL import ImageFilter, ImageOps, Image
+import numpy as np
 
 def alpha_to_rgba(alpha, r=50, g=130, b=184):
     r_channel = Image.new('L', alpha.size, r)
@@ -6,6 +7,17 @@ def alpha_to_rgba(alpha, r=50, g=130, b=184):
     b_channel = Image.new('L', alpha.size, b)
     
     return Image.merge('RGBA', [r_channel, g_channel, b_channel, alpha])
+
+def salient(img):
+    grayscale = img.convert('L').split()[0]
+    alpha = img.split()[-1]
+
+    gray_arr = 255 - np.array(grayscale)
+    alpha_arr = np.array(alpha)
+
+    final_arr = np.minimum(gray_arr, alpha_arr)
+
+    return Image.fromarray(final_arr, mode='L')
 
 def bloomify(img):
     # Make sure we have an rgba image
@@ -15,6 +27,7 @@ def bloomify(img):
     img = ImageOps.expand(img, border=10, fill=(0,0,0,0))
     
     alpha = img.split()[-1]
+    alpha = salient(img).split()[0]
     
     recolored_image = alpha_to_rgba(alpha, r=255, g=255, b=255)
     bloom_layer = alpha_to_rgba(alpha, r=50, g=130, b=184).filter(ImageFilter.GaussianBlur(radius=5))
